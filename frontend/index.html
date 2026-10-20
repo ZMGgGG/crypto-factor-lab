@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Crypto Factor Lab research console">
+    <title>Crypto Factor Lab</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <div class="brand-block"><div class="brand-mark" aria-hidden="true">CF</div><div><div class="brand-name">Crypto Factor Lab</div><div class="brand-meta">Research console</div></div></div>
+        <nav class="nav-list" aria-label="研究模块">
+          <button class="nav-item is-active" data-view="overview" type="button"><span class="nav-icon" aria-hidden="true">◒</span><span>研究总览</span></button>
+          <button class="nav-item" data-view="data" type="button"><span class="nav-icon" aria-hidden="true">▦</span><span>数据检查</span></button>
+          <button class="nav-item" data-view="factors" type="button"><span class="nav-icon" aria-hidden="true">◇</span><span>因子库</span></button>
+          <button class="nav-item" data-view="observations" type="button"><span class="nav-icon" aria-hidden="true">◎</span><span>观察跟踪</span></button>
+          <button class="nav-item" data-view="runs" type="button"><span class="nav-icon" aria-hidden="true">↗</span><span>实验记录</span></button>
+        </nav>
+        <div class="sidebar-footer"><div class="environment-label">当前环境</div><div class="environment-row"><span class="status-dot"></span><span>Local research</span></div><div class="sidebar-version">v0.1.0 · phase 2</div></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar"><div class="breadcrumb"><span>Research</span><span class="breadcrumb-separator">/</span><strong id="view-title">研究总览</strong></div><div class="topbar-actions"><button class="ghost-button" id="refresh-button" type="button">刷新数据</button><button class="primary-button" id="new-run-button" type="button">+ 新建实验</button></div></header>
+        <div class="page-wrap">
+          <section class="page-heading"><div><div class="eyebrow">FACTORS / BTCUSDT</div><h1 id="page-heading">研究总览</h1><p id="page-description">从真实历史数据开始，审计每个因子在样本外是否成立。</p></div><div class="dataset-selector"><label for="dataset-select">数据集</label><select id="dataset-select"><option value="btc">BTCUSDT · 1h · Binance USD-M</option><option value="synthetic">Synthetic panel · 20 assets</option></select></div></section>
+          <section class="scope-strip" aria-label="当前研究范围"><div class="scope-item"><span class="scope-label">市场</span><strong>Binance USD-M</strong></div><div class="scope-item"><span class="scope-label">标的</span><strong id="scope-symbol">BTCUSDT</strong></div><div class="scope-item"><span class="scope-label">频率</span><strong>1h</strong></div><div class="scope-item"><span class="scope-label">研究区间</span><strong id="scope-range">2021-01-01 → 2025-12-31</strong></div><div class="scope-item"><span class="scope-label">观察截止</span><strong id="scope-observation-end">读取中</strong></div><div class="scope-status"><span class="status-dot"></span><span>数据已校验</span></div></section>
+
+          <div id="view-overview" class="view-panel is-visible">
+            <section class="metric-grid" aria-label="数据集摘要"><article class="metric-card"><div class="metric-label">K 线数量</div><div class="metric-value">43,824</div><div class="metric-note positive">连续 · 60 个月归档</div></article><article class="metric-card"><div class="metric-label">样本外窗口</div><div class="metric-value">16</div><div class="metric-note">1y train / 3m test / 4h purge</div></article><article class="metric-card"><div class="metric-label">Mean test Rank IC</div><div class="metric-value negative">−0.0560</div><div class="metric-note negative">仅 6.25% 窗口为正</div></article><article class="metric-card"><div class="metric-label">成本后基线</div><div class="metric-value negative">−99.93%</div><div class="metric-note">6 bps 单边 · 已含资金费率</div></article></section>
+            <section class="content-grid"><article class="panel chart-panel"><div class="panel-header"><div><h2>价格与因子区间</h2><p>BTCUSDT close · 2025 年 1 月</p></div><button class="icon-button" title="查看图表说明" aria-label="查看图表说明" type="button">?</button></div><div class="chart-legend"><span><i class="legend-line price-line"></i>收盘价</span><span><i class="legend-line factor-line"></i>24h 动量</span></div><div class="chart-area" aria-label="BTCUSDT 价格与动量示意图"><svg viewBox="0 0 760 250" role="img" aria-labelledby="chart-title chart-desc" preserveAspectRatio="none"><title id="chart-title">BTCUSDT 价格与动量</title><desc id="chart-desc">一月价格上涨后回落，动量在下半月转负。</desc><g class="grid-lines"><line x1="0" y1="35" x2="760" y2="35"></line><line x1="0" y1="95" x2="760" y2="95"></line><line x1="0" y1="155" x2="760" y2="155"></line><line x1="0" y1="215" x2="760" y2="215"></line></g><path class="price-path" d="M0 181 C28 160 38 169 62 150 S99 132 124 142 S160 113 185 124 S218 86 248 98 S284 73 308 83 S340 53 372 72 S404 47 430 58 S462 38 492 66 S532 94 558 108 S590 89 616 119 S652 151 680 136 S720 183 760 174"></path><path class="factor-path" d="M0 190 C32 185 48 178 72 165 S108 148 132 144 S170 123 195 118 S228 96 250 105 S284 98 308 111 S345 92 371 110 S402 104 428 120 S460 113 486 132 S520 141 545 155 S584 148 610 168 S642 175 670 188 S718 204 760 211"></path><line class="zero-line" x1="0" y1="190" x2="760" y2="190"></line></svg><div class="chart-axis"><span>01 Jan</span><span>08 Jan</span><span>15 Jan</span><span>22 Jan</span><span>31 Jan</span></div></div></article>
+              <article class="panel status-panel"><div class="panel-header"><div><h2>研究状态</h2><p>BTC 自动挖掘基础闭环</p></div><span class="badge badge-blue">进行中</span></div><div class="status-list"><div class="status-row"><span class="check-mark">✓</span><div><strong>数据契约</strong><small>时间、OHLCV、频率检查</small></div><span class="status-complete">完成</span></div><div class="status-row"><span class="check-mark">✓</span><div><strong>样本外验证</strong><small>训练、验证、留出和 purge</small></div><span class="status-complete">完成</span></div><div class="status-row"><span class="check-mark">✓</span><div><strong>执行成本</strong><small>手续费、价差、滑点、资金费率</small></div><span class="status-complete">完成</span></div><div class="status-row"><span class="check-mark">✓</span><div><strong>自动挖掘</strong><small>生成、筛选、晋级和历史目录</small></div><span class="status-complete">基础版</span></div></div><button class="panel-link" id="open-progress-button" type="button">查看开发进度 <span aria-hidden="true">→</span></button></article></section>
+            <section class="panel table-panel"><div class="panel-header"><div><h2>最近结果</h2><p>页面任务和历史注册因子报告分开标识。</p></div><button class="ghost-button small" data-view-target="runs" type="button">查看全部</button></div><div class="table-wrap"><table><thead><tr><th>实验</th><th>因子</th><th>标签</th><th>观测</th><th>Rank IC</th><th>净收益</th><th>状态</th></tr></thead><tbody><tr><td><strong>历史注册因子报告</strong><small>页面加载的已保存结果</small></td><td><span class="mono">price_reversal</span></td><td>forward_return_4</td><td>43,796</td><td>0.0560</td><td>—</td><td><span class="badge badge-gray">历史报告</span></td></tr></tbody></table></div></section>
+          </div>
+
+          <div id="view-factors" class="view-panel"><section class="panel detail-panel"><div class="panel-header"><div><h2>因子库</h2><p>手工基线和自动挖掘候选分开管理。</p></div><div class="topbar-actions"><button class="ghost-button small" id="new-factor-button" type="button">+ 注册因子</button><button class="primary-button small" id="new-mining-button" type="button">启动自动挖掘</button></div></div><div class="factor-list"><div class="factor-item"><div class="factor-symbol">M</div><div><strong>price_momentum_24</strong><p>close.pct_change(24) · 时间序列 · 24h</p></div><span class="badge badge-amber">手工基线</span></div><div class="factor-item"><div class="factor-symbol teal">V</div><div><strong>relative_volume_24</strong><p>volume / rolling_mean(volume, 24)</p></div><span class="badge badge-gray">已注册</span></div><div class="factor-item"><div class="factor-symbol purple">F</div><div><strong>funding_rate_zscore</strong><p>真实资金费率 · 延迟滚动 z-score</p></div><span class="badge badge-gray">已注册</span></div></div></section><section class="panel detail-panel mining-results-panel"><div class="panel-header"><div><h2>挖掘候选</h2><p id="mining-results-meta">正在读取挖掘历史。</p></div><select id="mining-run-select" aria-label="选择挖掘运行"><option value="">暂无历史运行</option></select></div><div class="table-wrap"><table class="candidate-table"><thead><tr><th>公式</th><th>状态</th><th>验证 Rank IC</th><th>稳定性</th><th>HAC p 值</th><th>筛选</th><th>操作</th></tr></thead><tbody id="mining-results-body"><tr><td colspan="7" class="empty-cell">正在读取候选因子。</td></tr></tbody></table></div></section></div>
+          <div id="view-data" class="view-panel"><section class="panel detail-panel"><div class="panel-header"><div><h2>数据检查</h2><p>固定数据版本的质量检查记录。</p></div><span class="badge badge-green">全部通过</span></div><div class="data-check-grid"><div class="check-card"><span class="check-mark large">✓</span><strong>月度归档</strong><small>60 / 60 checksums</small></div><div class="check-card"><span class="check-mark large">✓</span><strong>时间连续</strong><small>43,824 bars</small></div><div class="check-card"><span class="check-mark large">✓</span><strong>OHLCV 合法</strong><small>0 errors</small></div><div class="check-card"><span class="check-mark large">✓</span><strong>UTC 标准化</strong><small>2021-01 → 2025-12</small></div></div></section></div>
+          <div id="view-runs" class="view-panel"><section class="panel detail-panel"><div class="panel-header"><div><h2>实验记录</h2><p>每次实验必须绑定数据、标签和代码版本。</p></div><button class="primary-button small" id="new-run-button-secondary" type="button">+ 新建实验</button></div><div class="run-timeline"><div class="timeline-item"><span class="timeline-dot active"></span><div><strong>BTC 24h baseline · 2021-2025</strong><p>Mean OOS Rank IC −0.0560 · net return −99.93% · 2026-09-20</p></div><span class="badge badge-amber">失败基线</span></div><div class="timeline-item"><span class="timeline-dot"></span><div><strong>Synthetic panel sanity</strong><p>Rank IC 0.0107 · 13,840 observations · 2026-09-18</p></div><span class="badge badge-green">通过</span></div></div></section></div>
+        </div>
+      </main>
+    </div>
+    <div class="modal-backdrop" id="experiment-modal" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="experiment-modal-title">
+        <div class="modal-header"><div><h2 id="experiment-modal-title">运行因子实验</h2><p>调用后端注册式因子管线，生成可追溯报告。</p></div><button class="icon-button" id="close-experiment-button" type="button" aria-label="关闭实验表单">×</button></div>
+        <form id="experiment-form" class="experiment-form">
+          <label>因子窗口（小时）<input name="momentum_window" type="number" value="24" min="2" max="8760" required></label>
+          <label>未来收益窗口（小时）<input name="forward_horizon" type="number" value="4" min="1" max="720" required></label>
+          <label>训练长度（小时）<input name="train_bars" type="number" value="8760" min="5" required></label>
+          <label>测试长度（小时）<input name="test_bars" type="number" value="2160" min="5" required></label>
+          <div class="form-actions"><button class="ghost-button" id="cancel-experiment-button" type="button">取消</button><button class="primary-button" type="submit">运行实验</button></div>
+          <p class="form-status" id="experiment-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+    <div class="modal-backdrop" id="mining-modal" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="mining-modal-title">
+        <div class="modal-header"><div><h2 id="mining-modal-title">自动挖掘 BTC 因子</h2><p>系统生成受约束表达式，完成样本外、成本和去重诊断。</p></div><button class="icon-button" id="close-mining-button" type="button" aria-label="关闭挖掘表单">×</button></div>
+        <form id="mining-form" class="experiment-form">
+          <label>研究开始日期<span class="date-input-group"><input name="research_start" type="text" inputmode="numeric" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" value="2021-01-01" data-date-text required><input type="date" min="2021-01-01" value="2021-01-01" data-date-picker aria-label="选择研究开始日期"></span><small>可直接输入 YYYY-MM-DD，也可以点击日历</small></label>
+          <label>研究结束日期<span class="date-input-group"><input name="research_end" type="text" inputmode="numeric" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" value="2026-10-11" data-date-text required><input type="date" min="2021-01-01" value="2026-10-11" data-date-picker aria-label="选择研究结束日期"></span><small>可直接输入 YYYY-MM-DD，也可以点击日历</small></label>
+          <label>挖掘模式<select name="mining_mode"><option value="formula">公式枚举</option><option value="hybrid">AI + 公式</option></select><small id="ai-mode-status">正在检查 AI 配置…</small></label>
+          <label>候选数量<input name="max_candidates" type="number" value="200" min="1" max="5000" required></label>
+          <label>AI 提议数量<input name="ai_candidate_count" type="number" value="20" min="1" max="100" required><small>仅 AI + 公式模式使用，包含在候选总数内</small></label>
+          <label>未来收益窗口（小时）<input name="forward_horizon" type="number" value="4" min="1" max="720" required></label>
+          <label>验证稳定性子窗口<input name="stability_windows" type="number" value="8" min="2" max="20" required></label>
+          <label>最小验证 |Rank IC|<input name="min_validation_abs_rank_ic" type="number" step="0.001" min="0" value="0.01"></label>
+          <label>最小方向一致性<input name="min_stability_directional_ratio" type="number" step="0.05" min="0" max="1" value="0.75"></label>
+          <label>FDR q 值<input name="fdr_q" type="number" step="0.01" min="0.01" max="1" value="0.05" required></label>
+          <label>入场分位数<input name="entry_quantile" type="number" step="0.05" min="0.55" max="0.95" value="0.80" required></label>
+          <div class="form-actions"><button class="ghost-button" id="cancel-mining-button" type="button">取消</button><button class="primary-button" type="submit">开始挖掘</button></div>
+          <p class="form-status" id="mining-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+    <div class="modal-backdrop" id="candidate-modal" hidden>
+      <section class="modal candidate-modal" role="dialog" aria-modal="true" aria-labelledby="candidate-modal-title">
+        <div class="modal-header"><div><h2 id="candidate-modal-title">候选详情</h2><p id="candidate-modal-subtitle">表达式及研究指标</p></div><button class="icon-button" id="close-candidate-button" type="button" aria-label="关闭候选详情">×</button></div>
+        <div class="candidate-detail" id="candidate-detail"></div>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

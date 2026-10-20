@@ -1,0 +1,41 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e .
+      - name: Run tests
+        run: >-
+          python -m unittest -v
+          tests.test_ai_proposals
+          tests.test_benchmarks
+          tests.test_binance_source
+          tests.test_catalog
+          tests.test_cross_sectional
+          tests.test_data
+          tests.test_execution
+          tests.test_expression
+          tests.test_factor_suite
+          tests.test_generator
+          tests.test_mining
+          tests.test_pipeline
+          tests.test_registry
+          tests.test_server
+          tests.test_task_store
+          tests.test_tracking
+          tests.test_validation
